@@ -189,9 +189,9 @@ class ElevenLabsTtsProvider {
     }
 
     async fetchTtsGeneration(text, voiceId) {
-        let model = "eleven_monolingual_v1"
+        let model_id = "eleven_monolingual_v1"
         if (this.settings.multilingual == true) {
-            model = "eleven_multilingual_v1"
+            model_id = "eleven_multilingual_v2"
         }
         console.info(`Generating new TTS for voice_id ${voiceId}`)
         const response = await fetch(
@@ -203,7 +203,7 @@ class ElevenLabsTtsProvider {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    model: model,
+                    model_id: model_id,
                     text: text,
                     voice_settings: this.settings
                 })
